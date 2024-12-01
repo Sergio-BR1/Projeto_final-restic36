@@ -16,15 +16,19 @@ export default function Login({ navigation }) {
 
     const handleLogin = async () => {
         try {
+
             const response = await api.get('/usuarios');
-            const users = response.data;
+            if (response.data) {
+                const users = response.data;
 
-            const  user = users.find(u => u.email === email && u.senha === senha);
+                const user = users.find(u => u.email === email && u.senha === senha);
+            
 
-            if (user) {
-                navigation.navigate('Auth', {screen: 'Home'});
-            } else {
-                console.log('Login falhou!');
+                if (user) {
+                    navigation.navigate('Auth', {screen: 'Home'});
+                } else {
+                    console.log('Login falhou!');
+                }
             }
         }catch (error) {
             console.log(error);
