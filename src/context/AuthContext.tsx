@@ -13,7 +13,6 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [userToken, setUserToken] = useState<string | null>(null);
 
-  // Carregar o token armazenado ao iniciar
   useEffect(() => {
     const carregarDadosDoUsuario = async () => {
       const tokenArmazenado = await AsyncStorage.getItem('userToken');
