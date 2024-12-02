@@ -1,5 +1,6 @@
 import React from 'react';
 import { Feather } from '@expo/vector-icons';
+import { View } from 'react-native';  // Importar o View do React Native
 import { 
     Wrapper,
     Container, 
@@ -11,11 +12,13 @@ import {
 } from '../Profile/styles';
 import Logo from '../../components/Logo';
 import theme from '../../theme';
-import Input from '../../components/Input'
+import Input from '../../components/Input';
 import { Button } from '../../components/Button';
+import ContactButton from '../../components/ContactButton';  
+import LogoutButton from '../../components/Logout';  
 
-
-export default function Profile({navigation }) {
+export default function Profile({ navigation }) {
+    const isVagaAberta = true;  
 
     return (
         <Wrapper>
@@ -42,7 +45,13 @@ export default function Profile({navigation }) {
                     title="Salvar informações" 
                     noSpacing={true} 
                     variant='primary'
-                    />
+                />
+
+                
+                <View style={{ marginTop: 20 }}>
+                    <ContactButton isVagaAberta={isVagaAberta} />  
+                    <LogoutButton />  
+                </View>
             </Container>
         </Wrapper>
     );

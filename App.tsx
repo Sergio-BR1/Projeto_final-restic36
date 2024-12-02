@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
@@ -42,8 +42,7 @@ function Auth() {
         tabBarLabelStyle: {
           fontWeight: 800,
         },
-      })}
-    >
+      })}>
       <Tab.Screen name="Home">
         {() => (
           <HomeStack.Navigator screenOptions={{ headerShown: false }}>
@@ -58,7 +57,7 @@ function Auth() {
 }
 
 const AppNavigator = () => {
-  const { userToken } = useAuth(); 
+  const { userToken } = useAuth();
 
   return (
     <Stack.Navigator initialRouteName={userToken ? 'Auth' : 'Login'} screenOptions={{ headerShown: false }}>
