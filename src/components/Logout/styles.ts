@@ -3,6 +3,7 @@ import theme from '../../theme';
 
 export const styles = StyleSheet.create({
   button: {
+    backgroundColor: theme.COLORS.GRAY_02,
     padding: 10,
     borderRadius: 5,
     marginTop: 20,
