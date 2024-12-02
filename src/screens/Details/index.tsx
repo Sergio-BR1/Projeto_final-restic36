@@ -14,7 +14,7 @@ import {
 } from '../Details/styles';
 import Logo from '../../components/Logo';
 import theme from '../../theme';
-import { Button } from '../../components/Button';
+import ContactButton from '../../components/ContactButton'; 
 import moment from 'moment'; // Import moment.js
 
 import { VagaProps } from '../../utils/Types';
@@ -45,6 +45,7 @@ export default function Details({ route, navigation }) {
     fetchVaga();
   }, [id]);
 
+  
   return (
     <Wrapper>
       <Header>
@@ -65,7 +66,7 @@ export default function Details({ route, navigation }) {
           </ContentContainer>
 
           {vaga.status === "aberta" && (
-            <Button title="Entrar em contato" noSpacing={true} variant="primary" />
+            <ContactButton isVagaAberta={vaga.status === "aberta"} />
           )}
         </Container>
       ) : (

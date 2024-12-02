@@ -17,8 +17,7 @@ import { Button } from '../../components/Button';
 import ContactButton from '../../components/ContactButton';  
 import LogoutButton from '../../components/Logout';  
 
-export default function Profile({ navigation }) {
-    const isVagaAberta = true;  
+export default function Profile({ navigation }) {  
 
     return (
         <Wrapper>
@@ -49,7 +48,6 @@ export default function Profile({ navigation }) {
 
                 
                 <View style={{ marginTop: 20 }}>
-                    <ContactButton isVagaAberta={isVagaAberta} />  
                     <LogoutButton />  
                 </View>
             </Container>
