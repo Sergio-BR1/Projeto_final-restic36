@@ -13,7 +13,6 @@ const EditUser = () => {
 
         console.log("Dados atualizados:", { email, senha });
 
-        Alert.alert("Dados atualizados com sucesso!");
     };
 
     return (
