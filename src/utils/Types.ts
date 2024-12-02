@@ -1,4 +1,4 @@
-export type VagasProps = {
+export type VagaProps = {
     id: number;
     title: String;
     description: String;
