@@ -27,50 +27,6 @@ export default function List() {
       fetchVagas();
     }, [])
 
-    const DATA = [
-        {
-          "id": 1,
-          "titulo": "Desenvolvedor Front-end",
-          "data_cadastro": "2024-06-21",
-          "empresa": "Tech Solutions"
-        },
-        {
-          "id": 2,
-          "titulo": "Analista de Dados",
-          "data_cadastro": "2024-06-18",
-          "empresa": "Data Insights"
-        },
-        {
-          "id": 3,
-          "titulo": "Gerente de Projetos",
-          "data_cadastro": "2024-06-15",
-          "empresa": "Project Masters"
-        },
-        {
-          "id": 4,
-          "titulo": "Gerente de Projetos",
-          "data_cadastro": "2024-06-15",
-          "empresa": "Project Masters"
-        },
-        {
-          "id": 5,
-          "titulo": "Gerente de Projetos",
-          "data_cadastro": "2024-06-15",
-          "empresa": "Project Masters"
-        },
-        {
-          "id": 6,
-          "titulo": "Gerente de Projetos",
-          "data_cadastro": "2024-06-15",
-          "empresa": "Project Masters"
-        },
-        {
-          "id": 7,
-          "titulo": "Gerente de Projetos",
-          "data_cadastro": "2024-06-15",
-          "empresa": "Project Masters"
-        }
-      ]
 
     return (
         <Wrapper>

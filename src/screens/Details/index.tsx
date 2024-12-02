@@ -1,81 +1,76 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 import { Feather } from '@expo/vector-icons';
-import { 
-    Wrapper,
-    Container, 
-    Header, 
-    HeaderButtonContainer, 
-    ButtonIcon, 
-    ButtonText,
-    ContentContainer,
-    Title,
-    Description
+import {
+  Wrapper,
+  Container,
+  Header,
+  HeaderButtonContainer,
+  ButtonIcon,
+  ButtonText,
+  ContentContainer,
+  Title,
+  Description,
 } from '../Details/styles';
 import Logo from '../../components/Logo';
 import theme from '../../theme';
 import { Button } from '../../components/Button';
+import moment from 'moment'; // Import moment.js
 
-import {VagaProps} from '../../utils/Types';
+import { VagaProps } from '../../utils/Types';
 
+export default function Details({ route, navigation }) {
+  const [id, setId] = useState(route.params.id);
+  const [vaga, setVaga] = useState<VagaProps>(null);
 
-export default function Details({route, navigation }) {
+  const fetchVaga = async () => {
+    try {
+      const response = await api.get(`/vagas/${id}`);
+      const data = response.data;
+      setVaga({
+        id: data.id,
+        title: data.titulo,
+        description: data.descricao,
+        date: data.date,
+        phone: data.telefone,
+        status: data.status,
+        company: data.empresa,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-    const [id, setId] = useState(route.params.id);
-    const [vaga, setVaga] = useState<VagaProps>(null);
+  useEffect(() => {
+    fetchVaga();
+  }, [id]);
 
-    const fetchVaga = async () => {
-        try{
-            const response = await api.get(`/vagas/${id}`);
-            const data = response.data;
-            setVaga({
-                id: data.id,
-                title: data.titulo,
-                description: data.descricao,
-                phone: data.telefone,
-                company: data.empresa
-            })
-        }catch(error) {
-            console.log(error);
-        }
-    };
+  return (
+    <Wrapper>
+      <Header>
+        <HeaderButtonContainer onPress={() => navigation.goBack()}>
+          <ButtonIcon>
+            <Feather size={16} name="chevron-left" color={theme.COLORS.BLUE} />
+          </ButtonIcon>
+          <ButtonText>Voltar</ButtonText>
+        </HeaderButtonContainer>
+        <Logo />
+      </Header>
 
-    useEffect(() =>{
-        fetchVaga();
-    }, [id]);
+      {vaga ? (
+        <Container>
+          <ContentContainer>
+            <Title>{vaga.title}</Title>
+            <Description>{vaga.description}</Description>
+          </ContentContainer>
 
-    return (
-        <Wrapper>
-            <Header>
-                <HeaderButtonContainer onPress={() => navigation.goBack()}>
-                    <ButtonIcon>
-                        <Feather size={16} name="chevron-left" color={theme.COLORS.BLUE} />
-                    </ButtonIcon>
-                    <ButtonText>
-                        Voltar
-                    </ButtonText>
-                </HeaderButtonContainer>
-                <Logo />
-            </Header>
-
-            {vaga ? (
-                <Container>
-                <ContentContainer>
-                    <Title>{vaga.title}</Title>
-                    <Description>{vaga.description}</Description>
-                </ContentContainer>
-
-                <Button 
-                    title="Entrar em contato" 
-                    noSpacing={true} 
-                    variant='primary'
-                    />
-            </Container>
-
-            ): (
-                <Title>Vaga não foi encontrada!</Title>
-            )}
-            
-        </Wrapper>
-    );
+          {vaga.status === "aberta" && (
+            <Button title="Entrar em contato" noSpacing={true} variant="primary" />
+          )}
+        </Container>
+      ) : (
+        <Title>Vaga não foi encontrada!</Title>
+      )}
+    </Wrapper>
+  );
 }
