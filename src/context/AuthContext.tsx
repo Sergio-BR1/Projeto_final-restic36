@@ -25,7 +25,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     carregarDadosDoUsuario();
   }, []);
 
-  // Função para armazenar o token no AsyncStorage e atualizar o estado
   const armazenarTokenUsuario = async (token: string | null) => {
     if (token) {
       await AsyncStorage.setItem('userToken', token); 
@@ -35,12 +34,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUserToken(token);
   };
 
-  // Função de login
   const login = async (token: string) => {
     await armazenarTokenUsuario(token);
   };
 
-  // Função de logout
   const logout = async () => {
     await armazenarTokenUsuario(null);
   };
